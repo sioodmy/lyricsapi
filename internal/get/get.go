@@ -7,6 +7,8 @@ import (
 	"github.com/gocolly/colly"
 )
 
+var cache = make(map[string]string)
+
 func GetHandle(w http.ResponseWriter, r *http.Request) {
 	query := r.PathValue("query")
 	song_path := SearchSong(query)
@@ -38,10 +40,18 @@ func GetSong(path string) string {
 	url := fmt.Sprintf("https://www.tekstowo.pl%s", path)
 	c := colly.NewCollector()
 
+	cached, exists := cache[path]
+
+	if exists {
+		return cached
+	}
+
 	var lyrics string
 	c.OnHTML("div#songText div.inner-text", func(e *colly.HTMLElement) {
 		lyrics = e.Text
 	})
+
+	cache[path] = lyrics
 
 	c.Visit(url)
 	return lyrics
