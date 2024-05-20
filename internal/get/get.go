@@ -18,7 +18,6 @@ func GetHandle(w http.ResponseWriter, r *http.Request) {
 }
 
 func SearchSong(query string) string {
-
 	url := fmt.Sprintf("https://www.tekstowo.pl/wyszukaj.html?search-query=%s", query)
 
 	c := colly.NewCollector()

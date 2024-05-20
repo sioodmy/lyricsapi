@@ -9,4 +9,3 @@ buildGoModule {
 
   ldflags = ["-s" "-w"];
 }
-
