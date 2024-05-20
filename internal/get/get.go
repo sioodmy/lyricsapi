@@ -49,9 +49,8 @@ func GetSong(path string) string {
 	var lyrics string
 	c.OnHTML("div#songText div.inner-text", func(e *colly.HTMLElement) {
 		lyrics = e.Text
+		cache[path] = lyrics
 	})
-
-	cache[path] = lyrics
 
 	c.Visit(url)
 	return lyrics
