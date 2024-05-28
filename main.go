@@ -6,7 +6,7 @@ import (
 	"io/fs"
 	"net/http"
 
-	"github.com/sioodmy/lyricsapi/internal/get"
+	"github.com/sioodmy/lyricsapi/pkg/get"
 )
 
 //go:embed static
